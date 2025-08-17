@@ -20,9 +20,11 @@ app.use(express.static(path.join(__dirname, "./client/build")));
 app.use("/api/v1/portfolio", require("./routes/portfolioRoute"));
 
 // catch-all route for React (must use /(.*) in Express 5)
-app.get("/*", (req, res) => {
+// catch-all for React in Express 5
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
+
 
 // port
 const PORT = process.env.PORT || 8080;
